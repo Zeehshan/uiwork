@@ -7,8 +7,15 @@ class ChangeTabProvider with ChangeNotifier {
 
   StreamTabType get streamTabType => _streamTabType;
 
+  List<IconData> tabOList = [];
+
   void changeTab(StreamTabType tabType) {
     _streamTabType = tabType;
+    notifyListeners();
+  }
+
+  addTabOListItem(IconData icon) {
+    tabOList.insert(0, icon);
     notifyListeners();
   }
 }
