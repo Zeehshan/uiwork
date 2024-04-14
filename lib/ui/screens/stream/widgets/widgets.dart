@@ -6,3 +6,4 @@ export 'chats_widget.dart';
 export 'icons_widge.dart';
 export 'tab_o_slist_widget.dart';
 export 'screen_stream_widget.dart';
+export 'chat_input_widget.dart';

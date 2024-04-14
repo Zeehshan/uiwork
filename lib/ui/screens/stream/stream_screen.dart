@@ -17,10 +17,17 @@ class StreamScreen extends StatelessWidget {
       ) {
         return Scaffold(
           bottomSheet: AnimatedContainer(
-            color: Theme.of(context).colorScheme.onBackground,
-            height: state.streamTabType.index == 0 ? 0 : 60,
+            height: state.streamTabType.index == 0 ? 0 : 120,
             duration: const Duration(milliseconds: 300),
-            child: const ScreenStreamWidget(),
+            decoration: BoxDecoration(
+              color: Theme.of(context).scaffoldBackgroundColor,
+              border: Border(
+                top: BorderSide(
+                  color: Theme.of(context).dividerColor,
+                ),
+              ),
+            ),
+            child: const ChatInputWidget(),
           ),
           body: DefaultTabController(
             length: 2,

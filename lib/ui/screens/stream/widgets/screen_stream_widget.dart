@@ -9,21 +9,20 @@ class ScreenStreamWidget extends StatelessWidget {
       scrollDirection: Axis.vertical,
       physics: const NeverScrollableScrollPhysics(),
       child: Row(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.end,
+        mainAxisAlignment: MainAxisAlignment.end,
         children: [
           IconButton(
               onPressed: () {},
               icon: const Icon(
-                Icons.arrow_back_ios,
-                color: Colors.white,
+                Icons.circle_outlined,
               )),
           IconButton(
               onPressed: () {},
               icon: const Icon(
-                Icons.arrow_forward_ios,
-                color: Colors.white,
+                Icons.circle_outlined,
               )),
+          const SizedBox(width: 30),
         ],
       ),
     );
