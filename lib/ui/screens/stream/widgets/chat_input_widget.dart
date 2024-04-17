@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../dialogs/dialogs.dart';
 import 'widgets.dart';
 
 class ChatInputWidget extends StatefulWidget {
@@ -40,7 +41,7 @@ class _ChatInputWidgetState extends State<ChatInputWidget> {
                     borderRadius: BorderRadius.circular(100),
                     color: Colors.grey.shade300),
                 child: IconButton(
-                  onPressed: () {},
+                  onPressed: () => CreateDialog.show(context),
                   icon: Icon(Icons.add),
                 ),
               ),
