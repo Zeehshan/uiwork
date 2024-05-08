@@ -29,19 +29,22 @@ class StreamScreen extends StatelessWidget {
             ),
             child: const ChatInputWidget(),
           ),
-          body: DefaultTabController(
-            length: 2,
-            initialIndex: state.streamTabType.index,
-            child: CustomScrollView(
-              slivers: [
-                const StreamAppBarWidget(),
-                // if (state.streamTabType.index == 0)
-                //   // const SliverToBoxAdapter(
-                //   //   child: IconsWidget(),
-                //   // ),
-                if (state.streamTabType.index == 0) const TabOListWidget(),
-                if (state.streamTabType.index == 1) const ChatsWidget(),
-              ],
+          body: ChangeNotifierProvider.value(
+            value: TabOProvider(),
+            child: DefaultTabController(
+              length: 2,
+              initialIndex: state.streamTabType.index,
+              child: CustomScrollView(
+                slivers: [
+                  const StreamAppBarWidget(),
+                  // if (state.streamTabType.index == 0)
+                  //   // const SliverToBoxAdapter(
+                  //   //   child: IconsWidget(),
+                  //   // ),
+                  if (state.streamTabType.index == 0) const TabOListWidget(),
+                  if (state.streamTabType.index == 1) const ChatsWidget(),
+                ],
+              ),
             ),
           ),
         );
