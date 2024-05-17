@@ -1,6 +1,8 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../../../../models/models.dart';
 import '../../../../providers/providers.dart';
 import '../../../../utils/utils.dart';
 
@@ -10,31 +12,127 @@ class TabOListWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final metaState = Provider.of<TabOProvider>(context);
-    return SliverList(
-      delegate: SliverChildBuilderDelegate((context, index) {
-        final item = metaState.metas[index];
-        if (item.metatype?.toLowerCase() == 'f') {
-          return ListTile(
-            leading: const Icon(Icons.file_copy),
-            title: Text.rich(TextSpan(text: item.metatext, children: [
-              const TextSpan(
-                text: ', ',
-              ),
-              TextSpan(
-                text: Tools.formatBytes(item.metasize),
-              ),
-            ])),
-            subtitle: Text.rich(TextSpan(text: item.participant, children: [
-              const TextSpan(
-                text: ', ',
-              ),
+    Widget? leading(String? type) {
+      switch (type) {
+        case 'f':
+          return const Icon(Icons.file_copy);
+        case 'p':
+          return const Icon(CupertinoIcons.videocam);
+        case 'd':
+          return const Icon(CupertinoIcons.calendar);
+        case 'vm':
+          return const Icon(CupertinoIcons.mail);
+        case 'g':
+          return const Icon(Icons.list);
+        default:
+          return null;
+      }
+    }
+
+    Widget titleVal(
+      String type, {
+      required MetaModel item,
+    }) {
+      switch (type) {
+        case 'f':
+          return Text.rich(TextSpan(text: item.metatext, children: [
+            const TextSpan(
+              text: ', ',
+            ),
+            TextSpan(
+              text: Tools.formatBytes(item.metasize),
+            ),
+          ]));
+        case 'p':
+          return Text.rich(TextSpan(text: item.metatext, children: [
+            const TextSpan(
+              text: ', ',
+            ),
+            TextSpan(
+              text: Tools.formatBytes(item.metalength),
+            ),
+            const TextSpan(
+              text: ', ',
+            ),
+            TextSpan(
+              text: Tools.formatBytes(item.dtime),
+            ),
+          ]));
+        case 'd':
+          return Text(Tools.utcDateTimeFormat(item.dtime!));
+        case 'vm':
+          return Text.rich(TextSpan(text: 'Voice Mail', children: [
+            const TextSpan(
+              text: ', Second ',
+            ),
+            TextSpan(
+              text: item.metalength,
+            ),
+          ]));
+        case 'g':
+          return Text(item.gtype ?? '');
+        default:
+          return Container();
+      }
+    }
+
+    Widget subTitleVal(
+      String type, {
+      required MetaModel item,
+    }) {
+      switch (type) {
+        case 'f':
+          return Text.rich(TextSpan(text: item.participant, children: [
+            const TextSpan(
+              text: ', ',
+            ),
+            if (item.metatime != null)
               TextSpan(
                 text: Tools.utcDateTimeFormat(item.metatime!),
               ),
-            ])),
+          ]));
+        case 'p':
+          return Text.rich(TextSpan(text: item.participant, children: [
+            const TextSpan(
+              text: ', ',
+            ),
+            TextSpan(
+              text: Tools.formatBytes(item.metatime),
+            ),
+          ]));
+        case 'd':
+          return Text(item.participant ?? '');
+        case 'vm':
+          return Text.rich(TextSpan(text: item.participant, children: [
+            const TextSpan(
+              text: ', ',
+            ),
+            TextSpan(
+              text: Tools.utcDateTimeFormat(item.metatime!),
+            ),
+          ]));
+        case 'g':
+          return Text(
+            Tools.utcDateTimeFormat(item.metatime!),
           );
+        default:
+          return Container();
+      }
+    }
+
+    return SliverList(
+      delegate: SliverChildBuilderDelegate((context, index) {
+        final item = metaState.metas[index];
+        if (leading(item.metatype?.toString().toLowerCase()) == null) {
+          return Container();
         }
-        return Container();
+        return ListTile(
+          leading: leading(item.metatype?.toString().toLowerCase() ?? ''),
+          title: titleVal(item.metatype?.toString().toLowerCase() ?? '',
+              item: item),
+          subtitle: subTitleVal(item.metatype?.toString().toLowerCase() ?? '',
+              item: item),
+        );
       }, childCount: metaState.metas.length),
     );
   }

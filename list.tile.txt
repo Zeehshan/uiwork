@@ -1,0 +1,37 @@
+Here are the descriptions of the remaining content types in the meta collection:
+
+1.)  Photo content type is noted as 
+Photo will have a listtile that consists of a "photo" icon, you can just use a stock icon. 
+The top row of the listtile will contain the filename which is read in the json as metatext. 
+The top row will also contain "file size: " and the value metasize and "bytes". or "k". 
+The second row of the listtile will contain "added by: " and the participant value. 
+The second row will also contain "added on: " and the datetime. as noted by metatime
+
+2.) Video content type is noted as "P" in the json. 
+Video will have a listtile that consists of a "video" icon, you can just use a stock icon. 
+The top row of the listtile will contain the filename which is read in the json as metatext. 
+The top row will also contain "length: " and the value "seconds" to denote time.
+The second row of the listtile will contain "added by: " and the participant value. 
+The second row will also contain "added on: " and the datetime. as noted by metatime
+
+
+3.)  Calendar event content type is noted as "D" in the json.
+calendar event will have a listtile that consists of a "calendar" icon, you can just a stock icon.
+The top row of the listtile will contain "meeting scheduled on: " and the date time value noted in the json as "dtime".
+The second row of the listtile will contain "added by: " and the participant value. 
+
+
+4.) voice mail content type is noted as "VM" in the json. 
+the voicemail will have a listtile that consists of a voicemail icon, if none exist just add a stock icon.
+The top row of the listtile will contain the text "Voice Mail" 
+The top row will also contain the text "length:" and the value from metalength and the text "seconds".
+The second row of the listtile will contain "added by: " and the participant value. 
+The second row will also contain "added on: " and the datetime. as noted by "metatime". 
+
+5.) the generative content type is noted as "G" in the json. 
+generative will have a listtile that consists of a random stock icon you pick. 
+The top row of the listtile will consist of the text "Generative type: " and the value "text" as noted by the "T" value in the json.
+The second row of the listtile will contain "added by: " and the participant value. 
+The second row will also contain "added on: " and the datetime as noted by "metatime". 
+
+
