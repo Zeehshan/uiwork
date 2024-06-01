@@ -29,49 +29,20 @@ class StreamScreen extends StatelessWidget {
             ),
             child: const ChatInputWidget(),
           ),
-          body: ChangeNotifierProvider.value(
-            value: TabOProvider(),
-            child: DefaultTabController(
-              length: 2,
-              initialIndex: state.streamTabType.index,
-              child: CustomScrollView(
-                slivers: [
-                  const StreamAppBarWidget(),
-                  // if (state.streamTabType.index == 0)
-                  //   // const SliverToBoxAdapter(
-                  //   //   child: IconsWidget(),
-                  //   // ),
-                  if (state.streamTabType.index == 0) const TabOListWidget(),
-                  if (state.streamTabType.index == 1) const ChatsWidget(),
-                ],
-              ),
+          body: DefaultTabController(
+            length: 2,
+            initialIndex: state.streamTabType.index,
+            child: CustomScrollView(
+              slivers: [
+                const StreamAppBarWidget(),
+                if (state.streamTabType.index == 0)
+                  ChangeNotifierProvider.value(
+                      value: TabOProvider(), child: const TabOListWidget()),
+                if (state.streamTabType.index == 1) const ChatsWidget(),
+              ],
             ),
           ),
         );
-        // return Scaffold(
-        //   appBar: AppBarWidget(
-        //     backgroundColor: Theme.of(context).colorScheme.primaryContainer,
-        //     title: Text(
-        //       'Header',
-        //       style: Theme.of(context)
-        //           .textTheme
-        //           .titleLarge!
-        //           .copyWith(fontSize: 18, fontWeight: FontWeight.bold),
-        //     ),
-        //     centerTitle: true,
-        //     backButtonCallback: () {},
-        //     actions: [
-        //       IconButton(
-        //           onPressed: () {},
-        //           icon: Icon(
-        //             CupertinoIcons.videocam,
-        //             color: Theme.of(context).primaryColor,
-        //             size: 40,
-        //           ))
-        //     ],
-        //   ),
-        //   body: const BodyWidget(),
-        // );
       }),
     );
   }

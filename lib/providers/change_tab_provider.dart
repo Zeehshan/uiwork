@@ -9,6 +9,16 @@ class ChangeTabProvider with ChangeNotifier {
 
   List<IconData> tabOList = [];
 
+  bool isLeftSwithcEnable = false;
+
+  String header = 'Header';
+
+  String addParticipant = 'Add Participent';
+  switchChanged(bool v) {
+    isLeftSwithcEnable = !isLeftSwithcEnable;
+    notifyListeners();
+  }
+
   void changeTab(StreamTabType tabType) {
     _streamTabType = tabType;
     notifyListeners();
