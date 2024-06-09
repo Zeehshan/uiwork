@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
+import '../../../../providers/providers.dart';
 import '../../../dialogs/dialogs.dart';
 import 'widgets.dart';
 
@@ -24,6 +26,7 @@ class _ChatInputWidgetState extends State<ChatInputWidget> {
 
   @override
   Widget build(BuildContext context) {
+    final tabState = Provider.of<ChangeTabProvider>(context);
     return Material(
       color: Colors.transparent,
       child: Column(
@@ -41,8 +44,12 @@ class _ChatInputWidgetState extends State<ChatInputWidget> {
                     borderRadius: BorderRadius.circular(100),
                     color: Colors.grey.shade300),
                 child: IconButton(
-                  onPressed: () => CreateDialog.show(context),
-                  icon: Icon(Icons.add),
+                  onPressed: () => CreateDialog.show(context).then((value) {
+                    if (value != null) {
+                      tabState.setTitleAndDescription(value[0], value[1]);
+                    }
+                  }),
+                  icon: const Icon(Icons.add),
                 ),
               ),
               const SizedBox(

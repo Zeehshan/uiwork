@@ -72,7 +72,7 @@ class CustomTabBar extends StatelessWidget implements PreferredSizeWidget {
     return Column(
       children: [
         Padding(
-          padding: const EdgeInsets.only(bottom: 8),
+          padding: const EdgeInsets.only(bottom: 8, left: 10),
           child: Stack(
             alignment: Alignment.center,
             children: [
@@ -82,14 +82,15 @@ class CustomTabBar extends StatelessWidget implements PreferredSizeWidget {
                   onTap: () {},
                   child: Row(
                     children: [
-                      const Icon(Icons.person),
-                      Text(
-                        tabState.addParticipant,
-                        style: Theme.of(context)
-                            .textTheme
-                            .titleLarge!
-                            .copyWith(fontSize: 14),
-                      ),
+                      const Icon(Icons.person_add),
+                      if (tabState.participants > 0)
+                        Text(
+                          tabState.participants.toString(),
+                          style: Theme.of(context)
+                              .textTheme
+                              .titleLarge!
+                              .copyWith(fontSize: 14),
+                        ),
                     ],
                   ),
                 ),
