@@ -11,10 +11,10 @@ class Application extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        Provider<TabOProvider>(create: (context) => TabOProvider()),
-        Provider<ChangeTabProvider>(create: (context) => ChangeTabProvider()),
+        Provider<TabCProvider>(create: (context) => TabCProvider()),
       ],
       child: const MaterialApp(
+        debugShowCheckedModeBanner: false,
         home: StreamScreen(),
       ),
     );

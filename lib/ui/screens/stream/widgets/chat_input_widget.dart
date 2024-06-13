@@ -26,7 +26,7 @@ class _ChatInputWidgetState extends State<ChatInputWidget> {
 
   @override
   Widget build(BuildContext context) {
-    final tabState = Provider.of<ChangeTabProvider>(context);
+    final tabState = Provider.of<TabCProvider>(context);
     return Material(
       color: Colors.transparent,
       child: Column(

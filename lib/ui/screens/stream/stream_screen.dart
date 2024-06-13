@@ -15,34 +15,47 @@ class StreamScreen extends StatelessWidget {
         state,
         child,
       ) {
-        return Scaffold(
-          bottomSheet: AnimatedContainer(
-            height: state.streamTabType.index == 0 ? 0 : 120,
-            duration: const Duration(milliseconds: 300),
-            decoration: BoxDecoration(
-              color: Theme.of(context).scaffoldBackgroundColor,
-              border: Border(
-                top: BorderSide(
-                  color: Theme.of(context).dividerColor,
+        return ChangeNotifierProvider.value(
+            value: TabCProvider(),
+            builder: (context, child) {
+              return Scaffold(
+                bottomSheet: AnimatedContainer(
+                  height: state.streamTabType.index == 0 ? 0 : 120,
+                  duration: const Duration(milliseconds: 150),
+                  decoration: BoxDecoration(
+                    color: Theme.of(context).scaffoldBackgroundColor,
+                    border: Border(
+                      top: BorderSide(
+                        color: Theme.of(context).dividerColor,
+                      ),
+                    ),
+                  ),
+                  child: const SingleChildScrollView(child: ChatInputWidget()),
                 ),
-              ),
-            ),
-            child: const ChatInputWidget(),
-          ),
-          body: DefaultTabController(
-            length: 2,
-            initialIndex: state.streamTabType.index,
-            child: CustomScrollView(
-              slivers: [
-                const StreamAppBarWidget(),
-                if (state.streamTabType.index == 0)
-                  ChangeNotifierProvider.value(
-                      value: TabOProvider(), child: const TabOListWidget()),
-                if (state.streamTabType.index == 1) const ChatsWidget(),
-              ],
-            ),
-          ),
-        );
+                body: DefaultTabController(
+                  length: 2,
+                  initialIndex: state.streamTabType.index,
+                  child: CustomScrollView(
+                    slivers: [
+                      const StreamAppBarWidget(),
+                      if (state.streamTabType.index == 0)
+                        ChangeNotifierProvider(
+                            create: (context) => TabOProvider(),
+                            child: Consumer<TabOProvider>(builder: (
+                              context,
+                              state,
+                              child,
+                            ) {
+                              return TabOListWidget(
+                                metas: state.metas,
+                              );
+                            })),
+                      if (state.streamTabType.index == 1) const ChatsWidget(),
+                    ],
+                  ),
+                ),
+              );
+            });
       }),
     );
   }

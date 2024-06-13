@@ -4,7 +4,7 @@ import '../screens/stream/widgets/widgets.dart';
 
 class CreateDialog {
   static Future<dynamic> show(BuildContext context) async {
-    showDialog(
+    return await showDialog(
       context: context,
       builder: (BuildContext context) => const CreateWidget(),
     );
@@ -49,7 +49,6 @@ class _CreateWidgetState extends State<CreateWidget> {
         );
         Navigator.pop(
             context, [_titleController.text, _descriptionController.text]);
-        return;
       }
     } catch (e) {
       ///

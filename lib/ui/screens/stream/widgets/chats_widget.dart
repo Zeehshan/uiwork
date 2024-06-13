@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
-import 'dart:math' as math; // import this
+import 'package:provider/provider.dart';
+import 'dart:math' as math;
+
+import '../../../../providers/providers.dart'; // import this
 
 class ChatsWidget extends StatelessWidget {
   const ChatsWidget({super.key});
@@ -21,6 +24,8 @@ class SentMessageWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final tacProvider = context.watch<TabCProvider>();
+
     return Padding(
       padding: const EdgeInsets.only(right: 10.0, left: 18, top: 1, bottom: 1),
       child: Row(
@@ -49,12 +54,12 @@ class SentMessageWidget extends StatelessWidget {
                       ),
                       child: Stack(
                         children: [
-                          const Padding(
-                            padding: EdgeInsets.only(
+                          Padding(
+                            padding: const EdgeInsets.only(
                                 top: 8, bottom: 20, left: 6, right: 6),
                             child: Text(
-                              'Did you recived my meesage?',
-                              style: TextStyle(
+                              tacProvider.title,
+                              style: const TextStyle(
                                   color: Colors.white,
                                   fontFamily: 'Monstserrat',
                                   fontSize: 14),
@@ -101,6 +106,7 @@ class RecivedMessageWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final tacProvider = context.watch<TabCProvider>();
     return Padding(
       padding: const EdgeInsets.only(right: 10.0, left: 18, top: 1, bottom: 1),
       child: Row(
@@ -136,12 +142,12 @@ class RecivedMessageWidget extends StatelessWidget {
                       ),
                       child: Stack(
                         children: [
-                          const Padding(
-                            padding: EdgeInsets.only(
+                          Padding(
+                            padding: const EdgeInsets.only(
                                 top: 8, bottom: 20, left: 6, right: 6),
                             child: Text(
-                              'Did you recived my meesage?',
-                              style: TextStyle(
+                              tacProvider.description,
+                              style: const TextStyle(
                                   color: Colors.black,
                                   fontFamily: 'Monstserrat',
                                   fontSize: 14),

@@ -9,7 +9,7 @@ class ScreenStreamWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final metaState = Provider.of<ChangeTabProvider>(context);
+    final tacProvider = Provider.of<TabCProvider>(context);
     return SingleChildScrollView(
       scrollDirection: Axis.vertical,
       physics: const NeverScrollableScrollPhysics(),
@@ -18,12 +18,12 @@ class ScreenStreamWidget extends StatelessWidget {
         children: [
           InkWell(
             borderRadius: BorderRadius.circular(100),
-            onTap: () => metaState.switchChanged(),
+            onTap: () => tacProvider.switchChanged(),
             child: Container(
               width: 20,
               height: 20,
               decoration: BoxDecoration(
-                color: metaState.isLeftSwithcEnable
+                color: tacProvider.isLeftSwithcEnable
                     ? Theme.of(context).primaryColor
                     : Colors.grey,
                 borderRadius: BorderRadius.circular(100),
@@ -38,13 +38,13 @@ class ScreenStreamWidget extends StatelessWidget {
                       builder: (context) => const SettingsScreen()));
                   break;
                 default:
-                  metaState.menuItemSelected(result);
+                  tacProvider.menuItemSelected(result);
               }
             },
             itemBuilder: (BuildContext context) => <PopupMenuEntry<String>>[
-              ...metaState.menus.map(
+              ...tacProvider.menus.map(
                 (e) => CheckedPopupMenuItem(
-                  checked: metaState.selectedItem == e['id'],
+                  checked: tacProvider.selectedItem == e['id'],
                   value: e['id'],
                   child: Text(
                     e['label'],

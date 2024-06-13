@@ -1,17 +1,15 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 import '../../../../models/models.dart';
-import '../../../../providers/providers.dart';
 import '../../../../utils/utils.dart';
 
 class TabOListWidget extends StatelessWidget {
-  const TabOListWidget({super.key});
+  final List<MetaModel> metas;
+  const TabOListWidget({super.key, required this.metas});
 
   @override
   Widget build(BuildContext context) {
-    final metaState = Provider.of<TabOProvider>(context);
     Widget? leading(String? type) {
       switch (type) {
         case 'f':
@@ -122,7 +120,7 @@ class TabOListWidget extends StatelessWidget {
 
     return SliverList(
       delegate: SliverChildBuilderDelegate((context, index) {
-        final item = metaState.metas[index];
+        final item = metas[index];
         if (leading(item.metatype?.toString().toLowerCase()) == null) {
           return Container();
         }
@@ -133,7 +131,7 @@ class TabOListWidget extends StatelessWidget {
           subtitle: subTitleVal(item.metatype?.toString().toLowerCase() ?? '',
               item: item),
         );
-      }, childCount: metaState.metas.length),
+      }, childCount: metas.length),
     );
   }
 }
