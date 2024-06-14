@@ -5,6 +5,7 @@ class TabCProvider extends ChangeNotifier {
   String? selectedItem;
   String description = 'asdfasdfsdfsfd';
   bool isLeftSwithcEnable = false;
+  int participants = 0;
 
   List<Map<String, dynamic>> menus = [
     {

@@ -68,7 +68,8 @@ class CustomTabBar extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
-    final tabState = Provider.of<ChangeTabProvider>(context);
+    final tabCProvider = Provider.of<TabCProvider>(context);
+    final tabsProvider = Provider.of<ChangeTabProvider>(context);
     return Column(
       children: [
         Padding(
@@ -83,14 +84,16 @@ class CustomTabBar extends StatelessWidget implements PreferredSizeWidget {
                   child: Row(
                     children: [
                       const Icon(Icons.person_add),
-                      if (tabState.participants > 0)
-                        Text(
-                          tabState.participants.toString(),
-                          style: Theme.of(context)
-                              .textTheme
-                              .titleLarge!
-                              .copyWith(fontSize: 14),
-                        ),
+                      const SizedBox(
+                        width: 8,
+                      ),
+                      Text(
+                        tabCProvider.participants.toString(),
+                        style: Theme.of(context)
+                            .textTheme
+                            .titleLarge!
+                            .copyWith(fontSize: 14),
+                      ),
                     ],
                   ),
                 ),
@@ -98,7 +101,7 @@ class CustomTabBar extends StatelessWidget implements PreferredSizeWidget {
               SizedBox(
                 width: 150,
                 child: TabBar(
-                  onTap: (index) => tabState.changeTab(
+                  onTap: (index) => tabsProvider.changeTab(
                     index == 0 ? StreamTabType.first : StreamTabType.second,
                   ),
                   labelStyle: Theme.of(context)
@@ -133,7 +136,8 @@ class CustomTabBar extends StatelessWidget implements PreferredSizeWidget {
             ],
           ),
         ),
-        if (tabState.streamTabType == StreamTabType.first) const IconsWidget(),
+        if (tabsProvider.streamTabType == StreamTabType.first)
+          const IconsWidget(),
       ],
     );
   }
