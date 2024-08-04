@@ -1,21 +1,28 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../../../../models/models.dart';
+import '../../../../providers/providers.dart';
 import '../../../../utils/utils.dart';
 
 class TabOListWidget extends StatelessWidget {
-  final List<MetaModel> metas;
-  const TabOListWidget({super.key, required this.metas});
+  const TabOListWidget({
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
+    final taOProvider = context.watch<TabOProvider>();
+    final metas = taOProvider.metas;
     Widget? leading(String? type) {
       switch (type) {
         case 'f':
           return const Icon(Icons.file_copy);
         case 'p':
-          return const Icon(CupertinoIcons.videocam);
+          return const Icon(CupertinoIcons.photo);
+        case 'v':
+          return const Icon(CupertinoIcons.play);
         case 'd':
           return const Icon(CupertinoIcons.calendar);
         case 'vm':
@@ -42,6 +49,7 @@ class TabOListWidget extends StatelessWidget {
             ),
           ]));
         case 'p':
+        case 'v':
           return Text.rich(TextSpan(text: item.metatext, children: [
             const TextSpan(
               text: ', ',
@@ -84,12 +92,12 @@ class TabOListWidget extends StatelessWidget {
             const TextSpan(
               text: ', ',
             ),
-            if (item.metatime != null)
-              TextSpan(
-                text: Tools.utcDateTimeFormat(item.metatime!),
-              ),
+            TextSpan(
+              text: Tools.dateTimeFormat(item.metatime),
+            ),
           ]));
         case 'p':
+        case 'v':
           return Text.rich(TextSpan(text: item.participant, children: [
             const TextSpan(
               text: ', ',
@@ -106,12 +114,12 @@ class TabOListWidget extends StatelessWidget {
               text: ', ',
             ),
             TextSpan(
-              text: Tools.utcDateTimeFormat(item.metatime!),
+              text: Tools.dateTimeFormat(item.metatime),
             ),
           ]));
         case 'g':
           return Text(
-            Tools.utcDateTimeFormat(item.metatime!),
+            Tools.dateTimeFormat(item.metatime),
           );
         default:
           return Container();

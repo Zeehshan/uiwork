@@ -11,6 +11,7 @@ class Application extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
+        ChangeNotifierProvider(create: (context) => TabOProvider()),
         Provider<TabCProvider>(create: (context) => TabCProvider()),
       ],
       child: const MaterialApp(

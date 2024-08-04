@@ -39,17 +39,7 @@ class StreamScreen extends StatelessWidget {
                     slivers: [
                       const StreamAppBarWidget(),
                       if (state.streamTabType.index == 0)
-                        ChangeNotifierProvider(
-                            create: (context) => TabOProvider(),
-                            child: Consumer<TabOProvider>(builder: (
-                              context,
-                              state,
-                              child,
-                            ) {
-                              return TabOListWidget(
-                                metas: state.metas,
-                              );
-                            })),
+                        const TabOListWidget(),
                       if (state.streamTabType.index == 1) const ChatsWidget(),
                     ],
                   ),

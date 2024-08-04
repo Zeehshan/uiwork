@@ -21,9 +21,10 @@ MetaModel _$MetaModelFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$MetaModel {
   String get metaid => throw _privateConstructorUsedError;
-  String? get metasize => throw _privateConstructorUsedError;
+  int? get metasize => throw _privateConstructorUsedError;
   String? get metatext => throw _privateConstructorUsedError;
-  String? get metatime => throw _privateConstructorUsedError;
+  @TimeStamptoDateConverter()
+  DateTime get metatime => throw _privateConstructorUsedError;
   String? get metatype => throw _privateConstructorUsedError;
   String? get participant => throw _privateConstructorUsedError;
   ViewCatModel? get viewcat => throw _privateConstructorUsedError;
@@ -34,6 +35,7 @@ mixin _$MetaModel {
   String? get metalength => throw _privateConstructorUsedError;
   @JsonKey(name: '__key__')
   MetaKeyModel? get metaKey => throw _privateConstructorUsedError;
+  MetafileModel? get file => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -48,9 +50,9 @@ abstract class $MetaModelCopyWith<$Res> {
   @useResult
   $Res call(
       {String metaid,
-      String? metasize,
+      int? metasize,
       String? metatext,
-      String? metatime,
+      @TimeStamptoDateConverter() DateTime metatime,
       String? metatype,
       String? participant,
       ViewCatModel? viewcat,
@@ -59,10 +61,12 @@ abstract class $MetaModelCopyWith<$Res> {
       String? dtime,
       String? rtime,
       String? metalength,
-      @JsonKey(name: '__key__') MetaKeyModel? metaKey});
+      @JsonKey(name: '__key__') MetaKeyModel? metaKey,
+      MetafileModel? file});
 
   $ViewCatModelCopyWith<$Res>? get viewcat;
   $MetaKeyModelCopyWith<$Res>? get metaKey;
+  $MetafileModelCopyWith<$Res>? get file;
 }
 
 /// @nodoc
@@ -81,7 +85,7 @@ class _$MetaModelCopyWithImpl<$Res, $Val extends MetaModel>
     Object? metaid = null,
     Object? metasize = freezed,
     Object? metatext = freezed,
-    Object? metatime = freezed,
+    Object? metatime = null,
     Object? metatype = freezed,
     Object? participant = freezed,
     Object? viewcat = freezed,
@@ -91,6 +95,7 @@ class _$MetaModelCopyWithImpl<$Res, $Val extends MetaModel>
     Object? rtime = freezed,
     Object? metalength = freezed,
     Object? metaKey = freezed,
+    Object? file = freezed,
   }) {
     return _then(_value.copyWith(
       metaid: null == metaid
@@ -100,15 +105,15 @@ class _$MetaModelCopyWithImpl<$Res, $Val extends MetaModel>
       metasize: freezed == metasize
           ? _value.metasize
           : metasize // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as int?,
       metatext: freezed == metatext
           ? _value.metatext
           : metatext // ignore: cast_nullable_to_non_nullable
               as String?,
-      metatime: freezed == metatime
+      metatime: null == metatime
           ? _value.metatime
           : metatime // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as DateTime,
       metatype: freezed == metatype
           ? _value.metatype
           : metatype // ignore: cast_nullable_to_non_nullable
@@ -145,6 +150,10 @@ class _$MetaModelCopyWithImpl<$Res, $Val extends MetaModel>
           ? _value.metaKey
           : metaKey // ignore: cast_nullable_to_non_nullable
               as MetaKeyModel?,
+      file: freezed == file
+          ? _value.file
+          : file // ignore: cast_nullable_to_non_nullable
+              as MetafileModel?,
     ) as $Val);
   }
 
@@ -171,6 +180,18 @@ class _$MetaModelCopyWithImpl<$Res, $Val extends MetaModel>
       return _then(_value.copyWith(metaKey: value) as $Val);
     });
   }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $MetafileModelCopyWith<$Res>? get file {
+    if (_value.file == null) {
+      return null;
+    }
+
+    return $MetafileModelCopyWith<$Res>(_value.file!, (value) {
+      return _then(_value.copyWith(file: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc
@@ -183,9 +204,9 @@ abstract class _$$MetaModelImplCopyWith<$Res>
   @useResult
   $Res call(
       {String metaid,
-      String? metasize,
+      int? metasize,
       String? metatext,
-      String? metatime,
+      @TimeStamptoDateConverter() DateTime metatime,
       String? metatype,
       String? participant,
       ViewCatModel? viewcat,
@@ -194,12 +215,15 @@ abstract class _$$MetaModelImplCopyWith<$Res>
       String? dtime,
       String? rtime,
       String? metalength,
-      @JsonKey(name: '__key__') MetaKeyModel? metaKey});
+      @JsonKey(name: '__key__') MetaKeyModel? metaKey,
+      MetafileModel? file});
 
   @override
   $ViewCatModelCopyWith<$Res>? get viewcat;
   @override
   $MetaKeyModelCopyWith<$Res>? get metaKey;
+  @override
+  $MetafileModelCopyWith<$Res>? get file;
 }
 
 /// @nodoc
@@ -216,7 +240,7 @@ class __$$MetaModelImplCopyWithImpl<$Res>
     Object? metaid = null,
     Object? metasize = freezed,
     Object? metatext = freezed,
-    Object? metatime = freezed,
+    Object? metatime = null,
     Object? metatype = freezed,
     Object? participant = freezed,
     Object? viewcat = freezed,
@@ -226,6 +250,7 @@ class __$$MetaModelImplCopyWithImpl<$Res>
     Object? rtime = freezed,
     Object? metalength = freezed,
     Object? metaKey = freezed,
+    Object? file = freezed,
   }) {
     return _then(_$MetaModelImpl(
       metaid: null == metaid
@@ -235,15 +260,15 @@ class __$$MetaModelImplCopyWithImpl<$Res>
       metasize: freezed == metasize
           ? _value.metasize
           : metasize // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as int?,
       metatext: freezed == metatext
           ? _value.metatext
           : metatext // ignore: cast_nullable_to_non_nullable
               as String?,
-      metatime: freezed == metatime
+      metatime: null == metatime
           ? _value.metatime
           : metatime // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as DateTime,
       metatype: freezed == metatype
           ? _value.metatype
           : metatype // ignore: cast_nullable_to_non_nullable
@@ -280,6 +305,10 @@ class __$$MetaModelImplCopyWithImpl<$Res>
           ? _value.metaKey
           : metaKey // ignore: cast_nullable_to_non_nullable
               as MetaKeyModel?,
+      file: freezed == file
+          ? _value.file
+          : file // ignore: cast_nullable_to_non_nullable
+              as MetafileModel?,
     ));
   }
 }
@@ -291,7 +320,7 @@ class _$MetaModelImpl implements _MetaModel {
       {required this.metaid,
       required this.metasize,
       required this.metatext,
-      required this.metatime,
+      @TimeStamptoDateConverter() required this.metatime,
       required this.metatype,
       required this.participant,
       required this.viewcat,
@@ -300,7 +329,8 @@ class _$MetaModelImpl implements _MetaModel {
       required this.dtime,
       required this.rtime,
       required this.metalength,
-      @JsonKey(name: '__key__') this.metaKey});
+      @JsonKey(name: '__key__') this.metaKey,
+      required this.file});
 
   factory _$MetaModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$MetaModelImplFromJson(json);
@@ -308,11 +338,12 @@ class _$MetaModelImpl implements _MetaModel {
   @override
   final String metaid;
   @override
-  final String? metasize;
+  final int? metasize;
   @override
   final String? metatext;
   @override
-  final String? metatime;
+  @TimeStamptoDateConverter()
+  final DateTime metatime;
   @override
   final String? metatype;
   @override
@@ -332,10 +363,12 @@ class _$MetaModelImpl implements _MetaModel {
   @override
   @JsonKey(name: '__key__')
   final MetaKeyModel? metaKey;
+  @override
+  final MetafileModel? file;
 
   @override
   String toString() {
-    return 'MetaModel(metaid: $metaid, metasize: $metasize, metatext: $metatext, metatime: $metatime, metatype: $metatype, participant: $participant, viewcat: $viewcat, gtext: $gtext, gtype: $gtype, dtime: $dtime, rtime: $rtime, metalength: $metalength, metaKey: $metaKey)';
+    return 'MetaModel(metaid: $metaid, metasize: $metasize, metatext: $metatext, metatime: $metatime, metatype: $metatype, participant: $participant, viewcat: $viewcat, gtext: $gtext, gtype: $gtype, dtime: $dtime, rtime: $rtime, metalength: $metalength, metaKey: $metaKey, file: $file)';
   }
 
   @override
@@ -361,7 +394,8 @@ class _$MetaModelImpl implements _MetaModel {
             (identical(other.rtime, rtime) || other.rtime == rtime) &&
             (identical(other.metalength, metalength) ||
                 other.metalength == metalength) &&
-            (identical(other.metaKey, metaKey) || other.metaKey == metaKey));
+            (identical(other.metaKey, metaKey) || other.metaKey == metaKey) &&
+            (identical(other.file, file) || other.file == file));
   }
 
   @JsonKey(ignore: true)
@@ -380,7 +414,8 @@ class _$MetaModelImpl implements _MetaModel {
       dtime,
       rtime,
       metalength,
-      metaKey);
+      metaKey,
+      file);
 
   @JsonKey(ignore: true)
   @override
@@ -399,9 +434,9 @@ class _$MetaModelImpl implements _MetaModel {
 abstract class _MetaModel implements MetaModel {
   const factory _MetaModel(
       {required final String metaid,
-      required final String? metasize,
+      required final int? metasize,
       required final String? metatext,
-      required final String? metatime,
+      @TimeStamptoDateConverter() required final DateTime metatime,
       required final String? metatype,
       required final String? participant,
       required final ViewCatModel? viewcat,
@@ -410,7 +445,8 @@ abstract class _MetaModel implements MetaModel {
       required final String? dtime,
       required final String? rtime,
       required final String? metalength,
-      @JsonKey(name: '__key__') final MetaKeyModel? metaKey}) = _$MetaModelImpl;
+      @JsonKey(name: '__key__') final MetaKeyModel? metaKey,
+      required final MetafileModel? file}) = _$MetaModelImpl;
 
   factory _MetaModel.fromJson(Map<String, dynamic> json) =
       _$MetaModelImpl.fromJson;
@@ -418,11 +454,12 @@ abstract class _MetaModel implements MetaModel {
   @override
   String get metaid;
   @override
-  String? get metasize;
+  int? get metasize;
   @override
   String? get metatext;
   @override
-  String? get metatime;
+  @TimeStamptoDateConverter()
+  DateTime get metatime;
   @override
   String? get metatype;
   @override
@@ -442,6 +479,8 @@ abstract class _MetaModel implements MetaModel {
   @override
   @JsonKey(name: '__key__')
   MetaKeyModel? get metaKey;
+  @override
+  MetafileModel? get file;
   @override
   @JsonKey(ignore: true)
   _$$MetaModelImplCopyWith<_$MetaModelImpl> get copyWith =>

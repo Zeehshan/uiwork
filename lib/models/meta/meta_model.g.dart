@@ -9,9 +9,10 @@ part of 'meta_model.dart';
 _$MetaModelImpl _$$MetaModelImplFromJson(Map<String, dynamic> json) =>
     _$MetaModelImpl(
       metaid: json['metaid'] as String,
-      metasize: json['metasize'] as String?,
+      metasize: (json['metasize'] as num?)?.toInt(),
       metatext: json['metatext'] as String?,
-      metatime: json['metatime'] as String?,
+      metatime: const TimeStamptoDateConverter()
+          .fromJson(json['metatime'] as Timestamp),
       metatype: json['metatype'] as String?,
       participant: json['participant'] as String?,
       viewcat: json['viewcat'] == null
@@ -25,6 +26,9 @@ _$MetaModelImpl _$$MetaModelImplFromJson(Map<String, dynamic> json) =>
       metaKey: json['__key__'] == null
           ? null
           : MetaKeyModel.fromJson(json['__key__'] as Map<String, dynamic>),
+      file: json['file'] == null
+          ? null
+          : MetafileModel.fromJson(json['file'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$MetaModelImplToJson(_$MetaModelImpl instance) =>
@@ -32,7 +36,7 @@ Map<String, dynamic> _$$MetaModelImplToJson(_$MetaModelImpl instance) =>
       'metaid': instance.metaid,
       'metasize': instance.metasize,
       'metatext': instance.metatext,
-      'metatime': instance.metatime,
+      'metatime': const TimeStamptoDateConverter().toJson(instance.metatime),
       'metatype': instance.metatype,
       'participant': instance.participant,
       'viewcat': instance.viewcat,
@@ -42,4 +46,5 @@ Map<String, dynamic> _$$MetaModelImplToJson(_$MetaModelImpl instance) =>
       'rtime': instance.rtime,
       'metalength': instance.metalength,
       '__key__': instance.metaKey,
+      'file': instance.file,
     };

@@ -10,7 +10,6 @@ class ChangeTabProvider with ChangeNotifier {
 
   List<IconData> tabOList = [];
   String header = 'Header';
-  int participants = 0;
   void changeTab(StreamTabType tabType) {
     _streamTabType = tabType;
     notifyListeners();

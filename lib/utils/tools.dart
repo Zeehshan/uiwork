@@ -37,4 +37,27 @@ class Tools {
 
     return formattedDateTime;
   }
+
+  static String dateTimeFormat(DateTime dateTime) {
+    // Convert the UTC DateTime to local time
+    DateTime localDateTime = dateTime.toLocal();
+
+    // Format the local DateTime as a string
+    String formattedDateTime =
+        DateFormat("MMM dd, yyyy 'at' hh:mm a").format(localDateTime);
+
+    return formattedDateTime;
+  }
+
+  // Function to check if the given path is a video.
+  static bool isVideo(String path) {
+    // List of common video file extensions.
+    const videoExtensions = ['mp4', 'avi', 'mov', 'mkv', 'flv', 'wmv', 'webm'];
+
+    // Extract the file extension from the path.
+    String extension = path.split('.').last.toLowerCase();
+
+    // Check if the file extension is in the list of video extensions.
+    return videoExtensions.contains(extension);
+  }
 }
