@@ -28,6 +28,12 @@
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
 	<string>Main</string>
+	<key>NSCameraUsageDescription</key>
+	<string>This lets you share images and videos with your friends on this app</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>This lets you have record video</string>	
+	<key>NSAppleMusicUsageDescription</key>
+	<string>This app requires permission to access the media library.</string>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>

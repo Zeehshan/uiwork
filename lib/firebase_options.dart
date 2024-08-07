@@ -57,17 +57,12 @@ class DefaultFirebaseOptions {
     storageBucket: 'testbed-7750b.appspot.com',
   );
 
-  ///TODO:
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyB5bXXy4M28qeyJDmpyiFutDF9syc08E9M',
-    appId: '1:187818008009:ios:85446e5fc5ac93b63ee546',
+    apiKey: 'AIzaSyC3lTaMouVZcS5FVuP01X9-Iw4SyFmflV4',
+    appId: '1:187818008009:ios:c504dbfb5233d807d85c18',
     messagingSenderId: '187818008009',
     projectId: 'testbed-7750b',
     storageBucket: 'testbed-7750b.appspot.com',
-    androidClientId:
-        '151352305203-b7no5egb5107m05enpt88s1m17r1rnt4.apps.googleusercontent.com',
-    iosClientId:
-        '151352305203-ieov3v5h7ucc38hlij5t2ob308f6bevs.apps.googleusercontent.com',
     iosBundleId: 'com.example.ryan',
   );
 }
