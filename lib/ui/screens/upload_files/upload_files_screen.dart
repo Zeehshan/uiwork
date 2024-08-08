@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 
 import '../../../providers/providers.dart';
@@ -7,7 +8,8 @@ import 'widgets/widgets.dart';
 
 class UploadFilesScreen extends StatelessWidget {
   final UploadType uploadType;
-  const UploadFilesScreen({super.key, required this.uploadType});
+  final List<XFile?>? files;
+  const UploadFilesScreen({super.key, required this.uploadType, this.files});
 
   @override
   Widget build(BuildContext context) {

@@ -45,11 +45,8 @@ class CameraScreen extends StatelessWidget {
             ),
           ),
         ),
-        sensorConfig: SensorConfig.multiple(
-          sensors: [
-            Sensor.position(SensorPosition.front),
-            Sensor.position(SensorPosition.back),
-          ],
+        sensorConfig: SensorConfig.single(
+          sensor: Sensor.position(SensorPosition.back),
           flashMode: FlashMode.auto,
           aspectRatio: CameraAspectRatios.ratio_4_3,
           zoom: 0.0,
@@ -59,16 +56,18 @@ class CameraScreen extends StatelessWidget {
         previewAlignment: Alignment.center,
         previewFit: CameraPreviewFit.contain,
         onMediaTap: (mediaCapture) {
-          // mediaCapture.captureRequest.when(
-          //   single: (single) {
-          //     debugPrint('single: ${single.file?.path}');
-          //   },
-          //   multiple: (multiple) {
-          //     multiple.fileBySensor.forEach((key, value) {
-          //       debugPrint('multiple file taken: $key ${value?.path}');
-          //     });
-          //   },
-          // );
+          mediaCapture.captureRequest.when(
+            single: (single) {
+              debugPrint('single: ${single.file?.path}');
+              Navigator.pop(context, [single.file]);
+            },
+            multiple: (multiple) {
+              Navigator.pop(context, multiple.fileBySensor.values.toList());
+              // multiple.fileBySensor.forEach((key, value) {
+              //   debugPrint('multiple file taken: $key ${value?.path}');
+              // });
+            },
+          );
         },
         availableFilters: awesomePresetFiltersList,
       ),

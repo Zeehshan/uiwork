@@ -1,6 +1,7 @@
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:image_picker/image_picker.dart';
 
 import '../data/repositories/repositories.dart';
 import '../utils/utils.dart';
@@ -21,12 +22,27 @@ class UploadFilesProvider extends ChangeNotifier {
 
   bool uploadStarted = false;
 
-  UploadFilesProvider(
-      {required UploadType type, required BuildContext context}) {
-    if (type == UploadType.images) {
-      getPhotos();
+  UploadFilesProvider({
+    required UploadType type,
+    required BuildContext context,
+    List<XFile?>? cameraFiles,
+  }) {
+    if (cameraFiles != null) {
+      files = cameraFiles
+          .map((f) => PlatformFile(
+                path: f?.path,
+                name: f?.name ?? '',
+                size: 0,
+
+                ///TODO:
+              ))
+          .toList();
     } else {
-      getVideos();
+      if (type == UploadType.images) {
+        getPhotos();
+      } else {
+        getVideos();
+      }
     }
     uploadType = type;
     cxt = context;
