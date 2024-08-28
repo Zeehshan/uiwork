@@ -3,7 +3,6 @@ import 'package:provider/provider.dart';
 
 import '../../../../providers/providers.dart';
 import '../../../dialogs/dialogs.dart';
-import 'widgets.dart';
 
 class ChatInputWidget extends StatefulWidget {
   const ChatInputWidget({super.key});
@@ -14,24 +13,23 @@ class ChatInputWidget extends StatefulWidget {
 
 class _ChatInputWidgetState extends State<ChatInputWidget> {
   late TextEditingController controller;
-
+  late TabCProvider tabCState;
   @override
   void initState() {
     super.initState();
+    tabCState = Provider.of<TabCProvider>(context, listen: false);
     controller = TextEditingController();
     controller.addListener(_onCommmentChanged);
   }
 
-  _onCommmentChanged() {}
+  _onCommmentChanged() => tabCState.changedMessage(controller.text);
 
   @override
   Widget build(BuildContext context) {
-    final tabState = Provider.of<TabCProvider>(context);
     return Material(
       color: Colors.transparent,
       child: Column(
         children: [
-          const ScreenStreamWidget(),
           Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
@@ -46,7 +44,7 @@ class _ChatInputWidgetState extends State<ChatInputWidget> {
                 child: IconButton(
                   onPressed: () => CreateDialog.show(context).then((value) {
                     if (value != null) {
-                      tabState.setTitleAndDescription(value[0], value[1]);
+                      tabCState.setTitleAndDescription(value[0], value[1]);
                     }
                   }),
                   icon: const Icon(Icons.add),
@@ -83,26 +81,6 @@ class _ChatInputWidgetState extends State<ChatInputWidget> {
                         ),
                       ),
                     ],
-                  ),
-                ),
-              ),
-              AnimatedContainer(
-                margin: const EdgeInsets.symmetric(horizontal: 10),
-                width: 30,
-                height: 30,
-                duration: const Duration(milliseconds: 400),
-                curve: Curves.fastOutSlowIn,
-                decoration: const BoxDecoration(
-                  color: Color(0xff115CCD),
-                  shape: BoxShape.circle,
-                ),
-                child: InkWell(
-                  onTap: () {},
-                  borderRadius: BorderRadius.circular(100),
-                  child: const Icon(
-                    Icons.arrow_upward,
-                    color: Colors.white,
-                    size: 18,
                   ),
                 ),
               ),

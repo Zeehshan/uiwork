@@ -1,5 +1,5 @@
 enum StreamTabType { first, second }
 
-enum Filetype { image, video }
+enum AttachementType { image, video, file }
 
 enum UploadType { images, videos }

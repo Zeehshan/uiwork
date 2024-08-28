@@ -9,4 +9,6 @@ abstract class LocalApiProvider {
 
   Future<List<PlatformFile>> photos();
   Future<List<PlatformFile>> videos();
+
+  Future<List<FileModel>> galleryPhotos();
 }

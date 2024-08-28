@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:file_picker/file_picker.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
@@ -39,7 +41,7 @@ class LocalApiGalleryProvider implements LocalApiProvider {
           file: croppedFile.path,
           name: pickedFile.name,
           size: (await pickedFile.length()),
-          filetype: Filetype.image);
+          filetype: AttachementType.image);
       // return croppedFile?.path;
     } catch (e) {
       rethrow;
@@ -58,7 +60,7 @@ class LocalApiGalleryProvider implements LocalApiProvider {
             file: pickedFile.path,
             name: pickedFile.name,
             size: (await pickedFile.length()),
-            filetype: Filetype.video);
+            filetype: AttachementType.video);
       }
     } catch (e) {
       rethrow;
@@ -90,6 +92,40 @@ class LocalApiGalleryProvider implements LocalApiProvider {
         withData: true,
       );
       return response?.files ?? [];
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<List<FileModel>> galleryPhotos() async {
+    try {
+      List<FileModel> files = [];
+      FilePickerResult? response = await FilePicker.platform.pickFiles(
+        allowMultiple: true,
+        type: FileType.media,
+        allowCompression: true,
+      );
+      if (response == null) {
+        return [];
+      } else {
+        for (final item in response.files) {
+          if (item.path != null) {
+            if (File(item.path!).existsSync()) {
+              final isVideo = Tools.isVideo(item.path!);
+              files.add(FileModel(
+                file: item.path!,
+                name: item.name,
+                size: item.size,
+                filetype:
+                    isVideo ? AttachementType.video : AttachementType.image,
+              ));
+            }
+          }
+        }
+      }
+
+      return files;
     } catch (e) {
       rethrow;
     }

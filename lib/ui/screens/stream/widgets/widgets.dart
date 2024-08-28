@@ -8,3 +8,7 @@ export 'tab_o_list_widget.dart';
 export 'screen_stream_widget.dart';
 export 'chat_input_widget.dart';
 export 'elevated_button_widget.dart';
+export 'msg_input_widget.dart';
+export 'send_button_widget.dart';
+export 'gallary_photos_widget.dart';
+export 'bottom_widget.dart';

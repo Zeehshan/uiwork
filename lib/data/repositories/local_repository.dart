@@ -39,4 +39,12 @@ class LocalRepository {
       rethrow;
     }
   }
+
+  Future<List<FileModel>> galleryPhotos() async {
+    try {
+      return await localApiProvider.galleryPhotos();
+    } catch (e) {
+      rethrow;
+    }
+  }
 }

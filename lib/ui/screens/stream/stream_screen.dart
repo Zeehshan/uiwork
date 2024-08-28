@@ -18,30 +18,23 @@ class StreamScreen extends StatelessWidget {
         return ChangeNotifierProvider.value(
             value: TabCProvider(),
             builder: (context, child) {
-              return Scaffold(
-                bottomSheet: AnimatedContainer(
-                  height: state.streamTabType.index == 0 ? 0 : 120,
-                  duration: const Duration(milliseconds: 150),
-                  decoration: BoxDecoration(
-                    color: Theme.of(context).scaffoldBackgroundColor,
-                    border: Border(
-                      top: BorderSide(
-                        color: Theme.of(context).dividerColor,
-                      ),
+              return GestureDetector(
+                onTap: () => FocusScope.of(context).unfocus(),
+                child: Scaffold(
+                  bottomSheet: state.streamTabType.index == 0
+                      ? null
+                      : const SingleChildScrollView(child: BottomWidget()),
+                  body: DefaultTabController(
+                    length: 2,
+                    initialIndex: state.streamTabType.index,
+                    child: CustomScrollView(
+                      slivers: [
+                        const StreamAppBarWidget(),
+                        if (state.streamTabType.index == 0)
+                          const TabOListWidget(),
+                        if (state.streamTabType.index == 1) const ChatsWidget(),
+                      ],
                     ),
-                  ),
-                  child: const SingleChildScrollView(child: ChatInputWidget()),
-                ),
-                body: DefaultTabController(
-                  length: 2,
-                  initialIndex: state.streamTabType.index,
-                  child: CustomScrollView(
-                    slivers: [
-                      const StreamAppBarWidget(),
-                      if (state.streamTabType.index == 0)
-                        const TabOListWidget(),
-                      if (state.streamTabType.index == 1) const ChatsWidget(),
-                    ],
                   ),
                 ),
               );
