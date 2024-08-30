@@ -1,5 +1,5 @@
 import 'package:file_picker/file_picker.dart';
-import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 
 import '../data/repositories/repositories.dart';
 import '../models/file/file_model.dart';
@@ -14,6 +14,7 @@ class TabCProvider extends ChangeNotifier {
   int participants = 0;
   Map<int, FileModel> files = {};
   String message = '';
+
   List<Map<String, dynamic>> menus = [
     {
       'id': '0',
@@ -65,6 +66,7 @@ class TabCProvider extends ChangeNotifier {
         final file = mediaFiles[i];
         files[file.file.hashCode] = mediaFiles[i];
       }
+      logger.i(files.length);
       notifyListeners();
     } catch (e) {
       logger.e(e);
@@ -86,6 +88,23 @@ class TabCProvider extends ChangeNotifier {
       return AttachementType.video;
     } else {
       return AttachementType.image;
+    }
+  }
+
+  updateFiles(List<PlatformFile> files) {
+    try {
+      for (var i = 0; i < files.length; i++) {
+        final file = files[i];
+        this.files[file.xFile.path.hashCode] = FileModel(
+          name: file.name,
+          file: file.xFile.path,
+          size: file.size,
+          filetype: AttachementType.file,
+        );
+      }
+      notifyListeners();
+    } catch (e) {
+      logger.e(e);
     }
   }
 }

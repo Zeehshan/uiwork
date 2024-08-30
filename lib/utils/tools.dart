@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:intl/intl.dart';
 
 class Tools {
@@ -59,5 +61,24 @@ class Tools {
 
     // Check if the file extension is in the list of video extensions.
     return videoExtensions.contains(extension);
+  }
+
+  static String removeDotFromExtension(String fileName) {
+    // Get the file extension
+    String extension = fileName.split('.').last;
+
+    // If the file has an extension, remove the dot
+    if (fileName.contains('.')) {
+      return fileName.replaceAll('.$extension', extension);
+    }
+
+    // If there is no extension, return the original file name
+    return fileName;
+  }
+
+  static String getFileSizeString({required int bytes, int decimals = 0}) {
+    const suffixes = ['b', 'kb', 'mb', 'gb', 'tb'];
+    var i = (log(bytes) / log(1024)).floor();
+    return ((bytes / pow(1024, i)).toStringAsFixed(decimals)) + suffixes[i];
   }
 }

@@ -12,7 +12,7 @@ class Application extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (context) => TabOProvider()),
-        Provider<TabCProvider>(create: (context) => TabCProvider()),
+        ChangeNotifierProvider(create: (context) => TabCProvider()),
       ],
       child: const MaterialApp(
         debugShowCheckedModeBanner: false,

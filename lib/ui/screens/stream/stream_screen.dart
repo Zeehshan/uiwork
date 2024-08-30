@@ -15,10 +15,11 @@ class StreamScreen extends StatelessWidget {
         state,
         child,
       ) {
-        return ChangeNotifierProvider.value(
-            value: TabCProvider(),
-            builder: (context, child) {
-              return GestureDetector(
+        return Scaffold(
+          body: Stack(
+            alignment: Alignment.center,
+            children: [
+              GestureDetector(
                 onTap: () => FocusScope.of(context).unfocus(),
                 child: Scaffold(
                   bottomSheet: state.streamTabType.index == 0
@@ -37,8 +38,12 @@ class StreamScreen extends StatelessWidget {
                     ),
                   ),
                 ),
-              );
-            });
+              ),
+              const BlurrWidget(),
+              const OptionsWidget(),
+            ],
+          ),
+        );
       }),
     );
   }

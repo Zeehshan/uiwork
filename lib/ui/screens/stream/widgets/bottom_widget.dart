@@ -29,8 +29,10 @@ class BottomWidget extends StatelessWidget {
               children: [
                 InkWell(
                   borderRadius: BorderRadius.circular(100),
-                  onTap: () => Provider.of<TabCProvider>(context, listen: false)
-                      .getMediaFiles(),
+                  // onTap: () => Provider.of<TabCProvider>(context, listen: false)
+                  //     .getMediaFiles(),
+                  onTap: () =>
+                      context.read<ChangeTabProvider>().blurrChanged(true),
                   child: Container(
                     padding: const EdgeInsets.all(3),
                     margin: const EdgeInsets.all(10),

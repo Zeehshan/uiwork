@@ -12,3 +12,5 @@ export 'msg_input_widget.dart';
 export 'send_button_widget.dart';
 export 'gallary_photos_widget.dart';
 export 'bottom_widget.dart';
+export 'blurr_widget.dart';
+export 'options_widget.dart';

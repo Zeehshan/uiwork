@@ -6,6 +6,7 @@ class CreateDialog {
   static Future<dynamic> show(BuildContext context) async {
     return await showDialog(
       context: context,
+      useSafeArea: false,
       builder: (BuildContext context) => const CreateWidget(),
     );
   }
