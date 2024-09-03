@@ -91,4 +91,43 @@ class AppRepository {
       rethrow;
     }
   }
+
+  /// get users
+  Future<List<UserModel>> getUsers({
+    required List<String> ids,
+  }) async {
+    try {
+      return await appApiProvider.getUsers(ids: ids);
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  /// get ott
+  Future<List<OttModel>> getOtt() async {
+    try {
+      return await appApiProvider.getOtt();
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  // get modes
+  Future<List<ModeModel>> getModes({
+    required String ottId,
+  }) async {
+    try {
+      return await appApiProvider.getModes(ottId: ottId);
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  Future<GroupModel> fetchGroup() async {
+    try {
+      return await appApiProvider.fetchGroup();
+    } catch (e) {
+      rethrow;
+    }
+  }
 }

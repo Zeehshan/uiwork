@@ -3,7 +3,11 @@ import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import '../../../configs/apis/apis.dart';
+import '../../../models/group/group_model.dart';
 import '../../../models/meta/meta_model.dart';
+import '../../../models/mode/mode_model.dart';
+import '../../../models/ott/ott_model.dart';
+import '../../../models/user/user_model.dart';
 import '../../../utils/utils.dart';
 import '../providers.dart';
 import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
@@ -152,6 +156,58 @@ class AppApiHttpProvider implements AppApiProvider {
           return MetaModel.fromJson(doc.data() as Map<String, dynamic>);
         }).toList();
       });
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<List<ModeModel>> getModes({required String ottId}) async {
+    try {
+      final QuerySnapshot querySnapshot =
+          await BackendApis.ott.doc(ottId).collection('modes').get();
+      return querySnapshot.docs
+          .map((doc) => ModeModel.fromJson(doc.data() as Map<String, dynamic>))
+          .toList();
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<List<OttModel>> getOtt() async {
+    try {
+      final QuerySnapshot querySnapshot = await BackendApis.ott.get();
+      return querySnapshot.docs
+          .map((doc) => OttModel.fromJson(doc.data() as Map<String, dynamic>))
+          .toList();
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<List<UserModel>> getUsers({
+    required List<String> ids,
+  }) async {
+    try {
+      final QuerySnapshot querySnapshot =
+          await BackendApis.users.where('uid', whereIn: [...ids]).get();
+      return querySnapshot.docs
+          .map((doc) => UserModel.fromJson(doc.data() as Map<String, dynamic>))
+          .toList();
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<GroupModel> fetchGroup() async {
+    try {
+      final QuerySnapshot querySnapshot =
+          await BackendApis.group.limit(1).get();
+      final doc = querySnapshot.docs.first;
+      return GroupModel.fromJson(doc.data() as Map<String, dynamic>);
     } catch (e) {
       rethrow;
     }

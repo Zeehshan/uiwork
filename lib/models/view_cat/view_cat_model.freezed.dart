@@ -24,8 +24,12 @@ mixin _$ViewCatModel {
   String? get string => throw _privateConstructorUsedError;
   String? get provided => throw _privateConstructorUsedError;
 
+  /// Serializes this ViewCatModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of ViewCatModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ViewCatModelCopyWith<ViewCatModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -49,6 +53,8 @@ class _$ViewCatModelCopyWithImpl<$Res, $Val extends ViewCatModel>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of ViewCatModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -92,6 +98,8 @@ class __$$ViewCatModelImplCopyWithImpl<$Res>
       _$ViewCatModelImpl _value, $Res Function(_$ViewCatModelImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ViewCatModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -148,11 +156,13 @@ class _$ViewCatModelImpl implements _ViewCatModel {
                 other.provided == provided));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, integer, string, provided);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ViewCatModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ViewCatModelImplCopyWith<_$ViewCatModelImpl> get copyWith =>
@@ -181,8 +191,11 @@ abstract class _ViewCatModel implements ViewCatModel {
   String? get string;
   @override
   String? get provided;
+
+  /// Create a copy of ViewCatModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ViewCatModelImplCopyWith<_$ViewCatModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

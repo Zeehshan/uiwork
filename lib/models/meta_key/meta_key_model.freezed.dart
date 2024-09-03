@@ -27,8 +27,12 @@ mixin _$MetaKeyModel {
   String get name => throw _privateConstructorUsedError;
   String? get id => throw _privateConstructorUsedError;
 
+  /// Serializes this MetaKeyModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of MetaKeyModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $MetaKeyModelCopyWith<MetaKeyModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -58,6 +62,8 @@ class _$MetaKeyModelCopyWithImpl<$Res, $Val extends MetaKeyModel>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of MetaKeyModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -122,6 +128,8 @@ class __$$MetaKeyModelImplCopyWithImpl<$Res>
       _$MetaKeyModelImpl _value, $Res Function(_$MetaKeyModelImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of MetaKeyModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -207,12 +215,14 @@ class _$MetaKeyModelImpl implements _MetaKeyModel {
             (identical(other.id, id) || other.id == id));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode =>
       Object.hash(runtimeType, namespace, app, path, kind, name, id);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of MetaKeyModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$MetaKeyModelImplCopyWith<_$MetaKeyModelImpl> get copyWith =>
@@ -250,8 +260,11 @@ abstract class _MetaKeyModel implements MetaKeyModel {
   String get name;
   @override
   String? get id;
+
+  /// Create a copy of MetaKeyModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$MetaKeyModelImplCopyWith<_$MetaKeyModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

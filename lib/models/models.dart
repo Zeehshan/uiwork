@@ -3,3 +3,7 @@ export 'view_cat/view_cat_model.dart';
 export 'meta_key/meta_key_model.dart';
 export 'file/file_model.dart';
 export 'meta_file/meta_file_model.dart';
+export 'user/user_model.dart';
+export 'ott/ott_model.dart';
+export 'mode/mode_model.dart';
+export 'group/group_model.dart';

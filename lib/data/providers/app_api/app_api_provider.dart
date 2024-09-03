@@ -39,4 +39,19 @@ abstract class AppApiProvider {
   /// list all meta datas as stream,
   /// we only need metadatas with metadataId
   Stream<List<MetaModel>> metas();
+
+  /// get users
+  Future<List<UserModel>> getUsers({
+    required List<String> ids,
+  });
+
+  /// get ott
+  Future<List<OttModel>> getOtt();
+
+  // get modes
+  Future<List<ModeModel>> getModes({
+    required String ottId,
+  });
+
+  Future<GroupModel> fetchGroup();
 }

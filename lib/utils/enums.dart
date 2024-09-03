@@ -33,3 +33,5 @@ enum ChatAddOptions {
     }
   }
 }
+
+enum ManageUI { loading, loaded, failure }

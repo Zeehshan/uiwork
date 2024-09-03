@@ -2,11 +2,12 @@ import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 
 import '../data/repositories/repositories.dart';
-import '../models/file/file_model.dart';
+import '../models/models.dart';
 import '../utils/utils.dart';
 
 class TabCProvider extends ChangeNotifier {
   final LocalRepository localRepository = LocalRepository();
+  final AppRepository appRepository = AppRepository();
   String title = 'sdfsdfsafdsdf';
   String? selectedItem;
   String description = 'asdfasdfsdfsfd';
@@ -14,6 +15,20 @@ class TabCProvider extends ChangeNotifier {
   int participants = 0;
   Map<int, FileModel> files = {};
   String message = '';
+
+  ManageUI usersManageUi = ManageUI.loading;
+
+  ManageUI ottManageUi = ManageUI.loading;
+
+  ManageUI modeManageUi = ManageUI.loading;
+  GroupModel? group;
+  List<UserModel> users = [];
+
+  List<OttModel> otts = [];
+
+  OttModel? selectedOtt;
+
+  Map<String, List<ModeModel>> modes = {};
 
   List<Map<String, dynamic>> menus = [
     {
@@ -105,6 +120,75 @@ class TabCProvider extends ChangeNotifier {
       notifyListeners();
     } catch (e) {
       logger.e(e);
+    }
+  }
+
+  Future<void> fetchGroup() async {
+    try {
+      final g = await appRepository.fetchGroup();
+      group = g;
+      loadUsers();
+    } catch (e) {
+      logger.e(e);
+    }
+  }
+
+  loadUsers() async {
+    try {
+      notifyListeners();
+      final users =
+          await appRepository.getUsers(ids: group?.participants ?? []);
+      logger.i(users.length);
+      this.users = users;
+      usersManageUi = ManageUI.loaded;
+      notifyListeners();
+    } catch (e) {
+      logger.e(e);
+      usersManageUi = ManageUI.failure;
+      notifyListeners();
+    }
+  }
+
+  loadOtt() async {
+    try {
+      ottManageUi = ManageUI.loading;
+      notifyListeners();
+      final otts = await appRepository.getOtt();
+      this.otts = otts;
+      ottManageUi = ManageUI.loaded;
+      notifyListeners();
+    } catch (e) {
+      logger.e(e);
+      ottManageUi = ManageUI.failure;
+      notifyListeners();
+    }
+  }
+
+  loadModes(String ottId) async {
+    try {
+      modeManageUi = ManageUI.loading;
+      notifyListeners();
+      final modes = await appRepository.getModes(ottId: ottId);
+      this.modes[ottId] = modes;
+      modeManageUi = ManageUI.loaded;
+      notifyListeners();
+    } catch (e) {
+      logger.e(e);
+      modeManageUi = ManageUI.failure;
+      notifyListeners();
+    }
+  }
+
+  selectOtt(OttModel ott) {
+    if (ott.sid == selectedOtt?.sid) {
+      selectedOtt = null;
+    } else {
+      selectedOtt = ott;
+    }
+
+    notifyListeners();
+    if (modes[ott.sid] == null) {
+      loadModes(ott.sid);
     }
   }
 }

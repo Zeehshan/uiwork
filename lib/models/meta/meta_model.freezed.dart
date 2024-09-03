@@ -37,8 +37,12 @@ mixin _$MetaModel {
   MetaKeyModel? get metaKey => throw _privateConstructorUsedError;
   MetafileModel? get file => throw _privateConstructorUsedError;
 
+  /// Serializes this MetaModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of MetaModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $MetaModelCopyWith<MetaModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -79,6 +83,8 @@ class _$MetaModelCopyWithImpl<$Res, $Val extends MetaModel>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of MetaModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -157,6 +163,8 @@ class _$MetaModelCopyWithImpl<$Res, $Val extends MetaModel>
     ) as $Val);
   }
 
+  /// Create a copy of MetaModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ViewCatModelCopyWith<$Res>? get viewcat {
@@ -169,6 +177,8 @@ class _$MetaModelCopyWithImpl<$Res, $Val extends MetaModel>
     });
   }
 
+  /// Create a copy of MetaModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $MetaKeyModelCopyWith<$Res>? get metaKey {
@@ -181,6 +191,8 @@ class _$MetaModelCopyWithImpl<$Res, $Val extends MetaModel>
     });
   }
 
+  /// Create a copy of MetaModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $MetafileModelCopyWith<$Res>? get file {
@@ -234,6 +246,8 @@ class __$$MetaModelImplCopyWithImpl<$Res>
       _$MetaModelImpl _value, $Res Function(_$MetaModelImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of MetaModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -398,7 +412,7 @@ class _$MetaModelImpl implements _MetaModel {
             (identical(other.file, file) || other.file == file));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -417,7 +431,9 @@ class _$MetaModelImpl implements _MetaModel {
       metaKey,
       file);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of MetaModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$MetaModelImplCopyWith<_$MetaModelImpl> get copyWith =>
@@ -481,8 +497,11 @@ abstract class _MetaModel implements MetaModel {
   MetaKeyModel? get metaKey;
   @override
   MetafileModel? get file;
+
+  /// Create a copy of MetaModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$MetaModelImplCopyWith<_$MetaModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

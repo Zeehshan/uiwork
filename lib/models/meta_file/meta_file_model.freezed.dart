@@ -23,8 +23,12 @@ mixin _$MetafileModel {
   String get remote => throw _privateConstructorUsedError;
   String? get thumbnail => throw _privateConstructorUsedError;
 
+  /// Serializes this MetafileModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of MetafileModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $MetafileModelCopyWith<MetafileModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -48,6 +52,8 @@ class _$MetafileModelCopyWithImpl<$Res, $Val extends MetafileModel>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of MetafileModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -86,6 +92,8 @@ class __$$MetafileModelImplCopyWithImpl<$Res>
       _$MetafileModelImpl _value, $Res Function(_$MetafileModelImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of MetafileModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -133,11 +141,13 @@ class _$MetafileModelImpl implements _MetafileModel {
                 other.thumbnail == thumbnail));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, remote, thumbnail);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of MetafileModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$MetafileModelImplCopyWith<_$MetafileModelImpl> get copyWith =>
@@ -163,8 +173,11 @@ abstract class _MetafileModel implements MetafileModel {
   String get remote;
   @override
   String? get thumbnail;
+
+  /// Create a copy of MetafileModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$MetafileModelImplCopyWith<_$MetafileModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../../../providers/providers.dart';
+import '../../../sheets/sheets.dart';
 import '../../screens.dart';
 
 class ScreenStreamWidget extends StatelessWidget {
@@ -30,31 +31,37 @@ class ScreenStreamWidget extends StatelessWidget {
               ),
             ),
           ),
-          PopupMenuButton<String>(
-            onSelected: (String result) {
-              switch (result) {
-                case '4':
-                  Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => const SettingsScreen()));
-                  break;
-                default:
-                  tacProvider.menuItemSelected(result);
-              }
-            },
-            itemBuilder: (BuildContext context) => <PopupMenuEntry<String>>[
-              ...tacProvider.menus.map(
-                (e) => CheckedPopupMenuItem(
-                  checked: tacProvider.selectedItem == e['id'],
-                  value: e['id'],
-                  child: Text(
-                    e['label'],
-                  ),
-                ),
-              )
+          // PopupMenuButton<String>(
+          //   onSelected: (String result) {
+          //     switch (result) {
+          //       case '4':
+          //         Navigator.of(context).push(MaterialPageRoute(
+          //             builder: (context) => const SettingsScreen()));
+          //         break;
+          //       default:
+          //         tacProvider.menuItemSelected(result);
+          //     }
+          //   },
+          //   itemBuilder: (BuildContext context) => <PopupMenuEntry<String>>[
+          //     ...tacProvider.menus.map(
+          //       (e) => CheckedPopupMenuItem(
+          //         checked: tacProvider.selectedItem == e['id'],
+          //         value: e['id'],
+          //         child: Text(
+          //           e['label'],
+          //         ),
+          //       ),
+          //     )
 
-              // ...other items listed here
-            ],
-          ),
+          //     // ...other items listed here
+          //   ],
+          // ),
+          IconButton(
+              onPressed: () {
+                context.read<TabCProvider>().loadOtt();
+                OttsSheet.show(context: context);
+              },
+              icon: const Icon(Icons.menu_rounded)),
           const SizedBox(width: 30),
         ],
       ),

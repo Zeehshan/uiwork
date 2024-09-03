@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 
 import '../../../../providers/providers.dart';
 import '../../../../utils/utils.dart';
+import '../../../sheets/users_sheet.dart';
 import 'widgets.dart';
 
 class StreamAppBarWidget extends StatelessWidget {
@@ -131,6 +132,27 @@ class CustomTabBar extends StatelessWidget implements PreferredSizeWidget {
                               textAlign: TextAlign.center,
                             ),
                           )),
+                ),
+              ),
+              Align(
+                alignment: Alignment.centerRight,
+                child: Padding(
+                  padding: const EdgeInsets.only(right: 10),
+                  child: InkWell(
+                    onTap: () {
+                      context.read<TabCProvider>().fetchGroup();
+                      UserSheet.show(context: context);
+                    },
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 10, vertical: 5),
+                      child: Text(
+                        'Users',
+                        style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                            fontSize: 14, fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                  ),
                 ),
               ),
             ],
