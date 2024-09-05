@@ -57,32 +57,14 @@ class ChatsWidget extends StatelessWidget {
                         padding: const EdgeInsets.symmetric(vertical: 5),
                         child: Align(
                           alignment: Alignment.bottomRight,
-                          child: Row(
-                            mainAxisSize: MainAxisSize.min,
-                            crossAxisAlignment: CrossAxisAlignment.end,
-                            children: [
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.end,
-                                children: [
-                                  UserNameWidget(
-                                    isMe: true,
-                                    user: msg.idFrom,
-                                  ),
-                                  ClipPath(
-                                    clipper: MsgPainter(
-                                      type: BubbleType.sendBubble,
-                                    ),
-                                    child: TextMessageWidget(
-                                      type: BubbleType.sendBubble,
-                                      message: msg,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              UserWidget(
-                                user: msg.idFrom,
-                              ),
-                            ],
+                          child: ClipPath(
+                            clipper: MsgPainter(
+                              type: BubbleType.sendBubble,
+                            ),
+                            child: TextMessageWidget(
+                              type: BubbleType.sendBubble,
+                              message: msg,
+                            ),
                           ),
                         ),
                       )
