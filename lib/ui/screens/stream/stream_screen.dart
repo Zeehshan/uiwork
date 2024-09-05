@@ -19,22 +19,28 @@ class StreamScreen extends StatelessWidget {
           body: Stack(
             alignment: Alignment.center,
             children: [
-              GestureDetector(
-                onTap: () => FocusScope.of(context).unfocus(),
-                child: Scaffold(
-                  bottomSheet: state.streamTabType.index == 0
-                      ? null
-                      : const SingleChildScrollView(child: BottomWidget()),
-                  body: DefaultTabController(
+              Positioned.fill(
+                child: GestureDetector(
+                  onTap: () => FocusScope.of(context).unfocus(),
+                  child: DefaultTabController(
                     length: 2,
                     initialIndex: state.streamTabType.index,
-                    child: CustomScrollView(
-                      slivers: [
-                        const StreamAppBarWidget(),
-                        if (state.streamTabType.index == 0)
-                          const TabOListWidget(),
-                        if (state.streamTabType.index == 1) const ChatsWidget(),
-                      ],
+                    child: Scaffold(
+                      appBar: const StreamAppBarWidget(
+                        toolbarHeight: 120,
+                      ),
+                      bottomSheet: state.streamTabType.index == 0
+                          ? null
+                          : const SingleChildScrollView(child: BottomWidget()),
+                      body: const TabBarView(
+                        physics: NeverScrollableScrollPhysics(),
+                        children: [
+                          // // if (state.streamTabType.index == 0)
+                          TabOListWidget(),
+                          // // if (state.streamTabType.index == 1)
+                          ChatsWidget(),
+                        ],
+                      ),
                     ),
                   ),
                 ),

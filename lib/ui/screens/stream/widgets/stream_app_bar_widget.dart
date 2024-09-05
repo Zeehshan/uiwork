@@ -7,17 +7,17 @@ import '../../../../utils/utils.dart';
 import '../../../sheets/users_sheet.dart';
 import 'widgets.dart';
 
-class StreamAppBarWidget extends StatelessWidget {
+class StreamAppBarWidget extends StatelessWidget
+    implements PreferredSizeWidget {
   const StreamAppBarWidget({
     super.key,
+    required this.toolbarHeight,
   });
-
+  final double toolbarHeight;
   @override
   Widget build(BuildContext context) {
     final tabState = Provider.of<ChangeTabProvider>(context);
-    return SliverAppBar(
-      pinned: true,
-      floating: true,
+    return AppBar(
       elevation: 0,
       automaticallyImplyLeading: true,
       iconTheme: const IconThemeData(color: Colors.black),
@@ -41,8 +41,7 @@ class StreamAppBarWidget extends StatelessWidget {
       ),
       backgroundColor: Theme.of(context).colorScheme.secondaryContainer,
       bottom: CustomTabBar(
-        myAppBarHeight:
-            tabState.streamTabType == StreamTabType.first ? 52 + 40 : 52,
+        myAppBarHeight: toolbarHeight,
       ),
       actions: [
         IconButton(
@@ -55,6 +54,9 @@ class StreamAppBarWidget extends StatelessWidget {
       ],
     );
   }
+
+  @override
+  Size get preferredSize => Size.fromHeight(toolbarHeight);
 }
 
 class CustomTabBar extends StatelessWidget implements PreferredSizeWidget {
@@ -139,10 +141,7 @@ class CustomTabBar extends StatelessWidget implements PreferredSizeWidget {
                 child: Padding(
                   padding: const EdgeInsets.only(right: 10),
                   child: InkWell(
-                    onTap: () {
-                      context.read<TabCProvider>().fetchGroup();
-                      UserSheet.show(context: context);
-                    },
+                    onTap: () => UserSheet.show(context: context),
                     child: Padding(
                       padding: const EdgeInsets.symmetric(
                           horizontal: 10, vertical: 5),
@@ -158,8 +157,6 @@ class CustomTabBar extends StatelessWidget implements PreferredSizeWidget {
             ],
           ),
         ),
-        if (tabsProvider.streamTabType == StreamTabType.first)
-          const IconsWidget(),
       ],
     );
   }

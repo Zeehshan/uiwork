@@ -61,13 +61,7 @@ class BottomWidget extends StatelessWidget {
                       child: Column(
                         children: [
                           GallaryPhotosWidget(),
-                          Row(
-                            crossAxisAlignment: CrossAxisAlignment.end,
-                            children: [
-                              Expanded(child: MsgInputWidget()),
-                              SendButtonWidget(),
-                            ],
-                          ),
+                          MsgInputWidget(),
                         ],
                       ),
                     ),

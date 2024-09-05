@@ -35,3 +35,11 @@ enum ChatAddOptions {
 }
 
 enum ManageUI { loading, loaded, failure }
+
+enum BubbleType {
+  /// Represents a sender's bubble displayed on the left side.
+  sendBubble,
+
+  /// Represents a receiver's bubble displayed on the right side.
+  receiverBubble
+}

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import '../data/repositories/repositories.dart';
 import '../models/models.dart';
 import '../utils/utils.dart';
+import 'providers.dart';
 
 class TabCProvider extends ChangeNotifier {
   final LocalRepository localRepository = LocalRepository();
@@ -24,11 +25,20 @@ class TabCProvider extends ChangeNotifier {
   GroupModel? group;
   List<UserModel> users = [];
 
+  //// current user as default
+  String? currentUser;
+
   List<OttModel> otts = [];
 
   OttModel? selectedOtt;
 
   Map<String, List<ModeModel>> modes = {};
+
+  TabCProvider({
+    required ChatMessagesProvider chatMessagesProvider,
+  }) {
+    fetchGroup(chatMessagesProvider: chatMessagesProvider);
+  }
 
   List<Map<String, dynamic>> menus = [
     {
@@ -123,11 +133,14 @@ class TabCProvider extends ChangeNotifier {
     }
   }
 
-  Future<void> fetchGroup() async {
+  Future<void> fetchGroup({
+    required ChatMessagesProvider chatMessagesProvider,
+  }) async {
     try {
       final g = await appRepository.fetchGroup();
       group = g;
       loadUsers();
+      chatMessagesProvider.chatCreated(documentId: group!.gid);
     } catch (e) {
       logger.e(e);
     }
@@ -141,6 +154,7 @@ class TabCProvider extends ChangeNotifier {
       logger.i(users.length);
       this.users = users;
       usersManageUi = ManageUI.loaded;
+      currentUser = users.first.uid;
       notifyListeners();
     } catch (e) {
       logger.e(e);
@@ -190,5 +204,10 @@ class TabCProvider extends ChangeNotifier {
     if (modes[ott.sid] == null) {
       loadModes(ott.sid);
     }
+  }
+
+  selectCurrentUser(String uid) {
+    currentUser = uid;
+    notifyListeners();
   }
 }

@@ -14,3 +14,4 @@ export 'gallary_photos_widget.dart';
 export 'bottom_widget.dart';
 export 'blurr_widget.dart';
 export 'options_widget.dart';
+export 'text_msg_widget.dart';

@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import '../../../../models/models.dart';
 import '../../../../providers/providers.dart';
 import '../../../../utils/utils.dart';
+import 'widgets.dart';
 
 class TabOListWidget extends StatelessWidget {
   const TabOListWidget({
@@ -126,20 +127,43 @@ class TabOListWidget extends StatelessWidget {
       }
     }
 
-    return SliverList(
-      delegate: SliverChildBuilderDelegate((context, index) {
-        final item = metas[index];
-        if (leading(item.metatype?.toString().toLowerCase()) == null) {
-          return Container();
-        }
-        return ListTile(
-          leading: leading(item.metatype?.toString().toLowerCase() ?? ''),
-          title: titleVal(item.metatype?.toString().toLowerCase() ?? '',
-              item: item),
-          subtitle: subTitleVal(item.metatype?.toString().toLowerCase() ?? '',
-              item: item),
-        );
-      }, childCount: metas.length),
+    return Column(
+      children: [
+        const IconsWidget(),
+        Expanded(
+          child: ListView(children: [
+            for (final item in metas)
+              if (leading(item.metatype?.toString().toLowerCase()) == null)
+                Container()
+              else
+                ListTile(
+                  leading:
+                      leading(item.metatype?.toString().toLowerCase() ?? ''),
+                  title: titleVal(item.metatype?.toString().toLowerCase() ?? '',
+                      item: item),
+                  subtitle: subTitleVal(
+                      item.metatype?.toString().toLowerCase() ?? '',
+                      item: item),
+                ),
+          ]),
+        ),
+      ],
     );
+
+    // return SliverList(
+    //   delegate: SliverChildBuilderDelegate((context, index) {
+    //     final item = metas[index];
+    //     if (leading(item.metatype?.toString().toLowerCase()) == null) {
+    //       return Container();
+    //     }
+    //     return ListTile(
+    //       leading: leading(item.metatype?.toString().toLowerCase() ?? ''),
+    //       title: titleVal(item.metatype?.toString().toLowerCase() ?? '',
+    //           item: item),
+    //       subtitle: subTitleVal(item.metatype?.toString().toLowerCase() ?? '',
+    //           item: item),
+    //     );
+    //   }, childCount: metas.length),
+    // );
   }
 }

@@ -46,16 +46,28 @@ class UsersSheet extends StatelessWidget {
       return const Text('There is no corresponding user');
     }
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: tabCState.users
-          .map((user) => ListTile(
-                contentPadding:
-                    const EdgeInsets.symmetric(horizontal: 0, vertical: 0),
-                minLeadingWidth: 0,
-                leading: const Icon(Icons.person),
-                title: Text(user.displayname),
-              ))
-          .toList(),
+      children: [
+        Padding(
+          padding: const EdgeInsets.all(20.0),
+          child: Text(
+            'Select A as (Current) and B as (Other) users to start chat',
+            style:
+                Theme.of(context).textTheme.titleLarge!.copyWith(fontSize: 14),
+          ),
+        ),
+        ...tabCState.users.map((user) => ListTile(
+              onTap: () =>
+                  context.read<TabCProvider>().selectCurrentUser(user.uid),
+              contentPadding:
+                  const EdgeInsets.symmetric(horizontal: 0, vertical: 0),
+              minLeadingWidth: 0,
+              leading: const Icon(Icons.person),
+              title: Text(user.displayname),
+              trailing: tabCState.currentUser == user.uid
+                  ? const Icon(Icons.check)
+                  : null,
+            )),
+      ],
     );
   }
 }

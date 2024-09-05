@@ -4,8 +4,10 @@ import 'package:provider/provider.dart';
 import '../../../../providers/providers.dart';
 
 class SendButtonWidget extends StatelessWidget {
+  final Function() onTap;
   const SendButtonWidget({
     super.key,
+    required this.onTap,
   });
 
   @override
@@ -27,7 +29,16 @@ class SendButtonWidget extends StatelessWidget {
       child: Material(
         color: Colors.transparent,
         child: InkWell(
-          onTap: () {},
+          onTap: context.read<TabCProvider>().currentUser == null
+              ? null
+              : () {
+                  FocusScope.of(context).unfocus();
+                  context.read<ChatMessagesProvider>().messageSent(
+                        message: context.read<TabCProvider>().message,
+                        currentUser: context.read<TabCProvider>().currentUser!,
+                      );
+                  onTap();
+                },
           borderRadius: BorderRadius.circular(100),
           child: const Padding(
             padding: EdgeInsets.all(4.0),

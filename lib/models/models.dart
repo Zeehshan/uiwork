@@ -7,3 +7,4 @@ export 'user/user_model.dart';
 export 'ott/ott_model.dart';
 export 'mode/mode_model.dart';
 export 'group/group_model.dart';
+export 'message/message_model.dart';

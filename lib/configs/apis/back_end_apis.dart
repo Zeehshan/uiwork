@@ -9,4 +9,6 @@ class BackendApis {
   static final ott = baseUrl.collection('ott');
 
   static final group = baseUrl.collection('group');
+
+  static final chats = baseUrl.collection('chats');
 }
